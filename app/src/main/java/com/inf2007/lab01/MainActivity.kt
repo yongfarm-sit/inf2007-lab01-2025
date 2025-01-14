@@ -39,6 +39,7 @@ fun MainScreen() {
     Lab01Theme {
         Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
             var username by remember { mutableStateOf("") }
+            var submittedUsername by remember { mutableStateOf("") }
             var showGreeting by remember { mutableStateOf(false) }
 
             Column(
@@ -56,6 +57,7 @@ fun MainScreen() {
                 Button(
                     onClick = {
                         if (username.isNotBlank()) {
+                            submittedUsername = username
                             showGreeting = true
                         }
                     },
@@ -68,7 +70,7 @@ fun MainScreen() {
 
                 if (showGreeting) {
                     Greeting(
-                        name = username,
+                        name = submittedUsername,
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(top = 16.dp)
